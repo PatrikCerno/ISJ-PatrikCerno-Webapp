@@ -56,11 +56,7 @@ def zobraz_trenerov():
     treneri = cursor.fetchall()
     conn.close()
 
-    vystup = "<h2>Zoznam trénerov a kurzov:</h2>"
-    for trener in treneri:
-        vystup += f"<p>{trener[1]} - {trener[2]}</p>"
-    vystup += '<br><a href="/"><button type="button">Späť</button></a>'
-    return vystup
+    return render_template("treneri.html", treneri=treneri)
 
 @app.route('/miesta')
 def zobraz_miesta():
