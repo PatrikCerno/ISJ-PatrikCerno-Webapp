@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Úvodná stránka</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Vitajte na našej webovej stránke!</h1>
+        <p>Naša platforma ponúka širokú škálu kurzov a odborných trénerov. Prejdite cez našu ponuku a vyberte si ten najlepší kurz pre vás.</p>
+        
+        <div class="alert-box">
+            <h2>Prečo si vybrať nás?</h2>
+            <ul>
+                <li>Široká ponuka kvalitných kurzov</li>
+                <li>Skúsení tréneri</li>
+                <li>Flexibilné štúdium online</li>
+            </ul>
+        </div>
+
+        <a href="/kurzy" class="btn">Zobraziť kurzy</a>
+        <a href="/treneri" class="btn">Zobraziť trénerov</a>
+    </div>
+</body>
+</html>
