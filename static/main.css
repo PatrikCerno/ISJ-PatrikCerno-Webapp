@@ -40,12 +40,13 @@ a.btn {
     font-size: 16px;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
 }
 
 button:hover,
 a.btn:hover {
     background-color: #246b45;
+    transform: translateY(-3px); /* Jemný efekt, aby tlačidlá vyzerali, že sú stlačené */
 }
 
 form {
@@ -80,8 +81,11 @@ a.back-link {
     margin-top: 20px;
     color: #2e8b57;
     text-decoration: underline;
+    font-size: 16px;
 }
 
 a.back-link:hover {
     color: #246b45;
+    text-decoration: none; /* Aby sa odstránil podčiarkovací efekt */
 }
+
