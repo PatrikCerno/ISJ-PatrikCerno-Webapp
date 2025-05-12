@@ -22,8 +22,16 @@ def afinne_sifrovanie(text):
 
 @app.route('/')
 def index():
-    return render_template("index.html")
-
+    return '''
+        <h1>Výber z databázy</h1>
+        <a href="/kurzy"><button type="button">Zobraz všetky kurzy</button></a>
+        <a href="/treneri"><button type="button">Zobraz všetkých trénerov</button></a>
+        <a href="/miesta"><button type="button">Zobraz miesta</button></a>
+        <a href="/kapacita"><button type="button">Zobraz kapacitu</button></a>
+        <a href="/registracia"><button type="button">Registruj trénera</button></a>
+        <a href="/pridaj_kurz"><button type="button">Pridaj nový kurz</button></a>
+        <hr>
+    '''
 
 @app.route('/kurzy')
 def zobraz_kurzy():
