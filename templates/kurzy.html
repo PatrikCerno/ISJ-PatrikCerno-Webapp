@@ -9,9 +9,9 @@
     <div class="container">
         <h2>Zoznam kurzov:</h2>
         {% for kurz in kurzy %}
-            <div class="alert-box">{{ kurz }}</div>
+            <p>{{ kurz.Nazov_kurzu }} (ID: {{ kurz.ID_kurzu}})</p>
         {% endfor %}
-        <a href="/" class="btn">Späť</a>
+        <a href="/">Späť</a>
     </div>
 </body>
 </html>
