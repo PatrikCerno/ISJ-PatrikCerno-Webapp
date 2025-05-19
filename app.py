@@ -1,4 +1,4 @@
-from flask import Flask, request,  render_template
+from flask import Flask, request, render_template
 import sqlite3
 import hashlib
 from flask_sqlalchemy import SQLAlchemy
@@ -6,10 +6,11 @@ import os
 
 app = Flask(__name__, instance_relative_config=True)
 
-db_path = os.path.join(app.instance_path, "kurzy.db")
+db_path = os.path.abspath("kurzy.db")  
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}".replace("\\", "/")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
+
 
 class Kurz(db.Model):
     __tablename__ = "Kurzy"
@@ -20,12 +21,13 @@ class Kurz(db.Model):
     Max_pocet_ucastnikov = db.Column(db.Integer)
     ID_trenera = db.Column(db.Integer)
 
-    def repr(self):
+    def __repr__(self):
         return f"<Kurz {self.Nazov_kurzu}>"
 
 def pripoj_db():
-    conn = sqlite3.connect("kurzy.db")
+    conn = sqlite3.connect(os.path.abspath("kurzy.db"))
     return conn
+
 
 # Afinná šifra (A=5, B=8)
 def afinne_sifrovanie(text):
@@ -46,7 +48,9 @@ def home():
 @app.route('/kurzy')
 def zobraz_kurzy():
     kurzy = Kurz.query.all()
+    print("Načítané kurzy:", kurzy)  
     return render_template("kurzy.html", kurzy=kurzy)
+
 
 @app.route('/treneri')
 def zobraz_trenerov():
@@ -174,8 +178,15 @@ def pridaj_kurz():
         <a href="/"><button type="button">Späť</button></a>
     '''
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
+    os.makedirs(app.instance_path, exist_ok=True)
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
+
+
+
 
 
 
