@@ -45,12 +45,7 @@ def home():
 
 @app.route('/kurzy')
 def zobraz_kurzy():
-    conn = pripoj_db()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM Kurzy")
-    kurzy = cursor.fetchall()
-    conn.close()
-
+    kurzy = Kurz.query.all()
     return render_template("kurzy.html", kurzy=kurzy)
 
 @app.route('/treneri')
