@@ -1,8 +1,10 @@
 from flask import Flask, request,  render_template
 import sqlite3
 import hashlib
+from flask_sqlalchemy import SQLAlchemy
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, instance_relative_config=True)
 
 def pripoj_db():
     conn = sqlite3.connect("kurzy.db")
