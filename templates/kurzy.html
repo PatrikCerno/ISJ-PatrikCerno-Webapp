@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="sk">
 <head>
     <meta charset="UTF-8">
     <title>Zoznam kurzov</title>
@@ -7,11 +7,11 @@
 </head>
 <body>
     <div class="container">
-        <h2>Zoznam kurzov:</h2>
+        <h2>{{ t.courses_list }}</h2>
         {% for kurz in kurzy %}
             <p>{{ kurz.Nazov_kurzu }} (ID: {{ kurz.ID_kurzu}})</p>
         {% endfor %}
-        <a href="/" class="btn">Späť</a>
+        <a href="/" class="btn">{{ t.back }}</a>
     </div>
 </body>
 </html>

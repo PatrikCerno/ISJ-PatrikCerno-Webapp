@@ -4,12 +4,16 @@ import hashlib
 from flask_sqlalchemy import SQLAlchemy
 import os
 
+from flask import g, session
+from i18n import TRANSLATIONS, SUPPORTED
+
 app = Flask(__name__, instance_relative_config=True)
 
 db_path = os.path.abspath("kurzy.db")  
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}".replace("\\", "/")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
+app.secret_key = "tajny_kluc"
 
 
 class Kurz(db.Model):
@@ -40,6 +44,18 @@ def afinne_sifrovanie(text):
         else:
             vysledok += znak
     return vysledok
+
+@app.before_request
+def set_lang():
+    lang = request.args.get("lang")
+    if lang not in SUPPORTED:
+        lang = session.get("lang", "sk")
+    session["lang"] = lang
+    g.t = TRANSLATIONS[lang]
+
+@app.context_processor
+def inject_translations():
+     return dict(t=g.t)
 
 @app.route('/')
 def home():
