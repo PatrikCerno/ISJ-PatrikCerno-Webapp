@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="sk">
 <head>
     <meta charset="UTF-8">
     <title>Zoznam trénerov</title>
@@ -7,11 +7,11 @@
 </head>
 <body>
     <div class="container">
-        <h2>Zoznam trénerov a kurzov:</h2>
+        <h2>{{ t.trainer_list }}</h2>
         {% for trener in treneri %}
             <div class="alert-box">{{ trener[1] }} - {{ trener[2] }}</div>
         {% endfor %}
-        <a href="/" class="btn">Späť</a>
+        <a href="/" class="btn">{{ t.back }}</a>
     </div>
 </body>
 </html>
